@@ -12,23 +12,20 @@ def group_primos():
     pi_valores.remove('3')
     texto.close()
     pi_primos = list()
-    index_finder = -1
-    index_inicio = 0
 
-    for x in pi_valores[0]:
-        index_finder += 1
-        join_numbers = pi_primos[index_inicio:index_finder]
+    for index_finder, x in enumerate(pi_valores[0]):
+
         if (int(x) % 2 == 1) and not (int(x) == 1) or (int(x) == 2) or (int(x) != 9) or (int(x) != 6): # DEFININDO NUMEROS PRIMOS
-            if (int(pi_valores[0][index_finder + 1]) % 2 == 0) or (int(pi_valores[0][index_finder + 1]) == 1) and not (int(pi_valores[0][index_finder + 1]) == 2):
-                pi_primos.append(x + " ") # SE O PROXIMO VALOR NÃO FOR PRIMO
-                pi_primos = "".join(join_numbers)
+
+            try:
+                if (int(pi_valores[0][index_finder + 1]) % 2 == 0) or (int(pi_valores[0][index_finder + 1]) == 1) and not (int(pi_valores[0][index_finder + 1]) == 2):
+                    pi_primos.append(x + " ") # SE O PROXIMO VALOR NÃO FOR PRIMO
+                else:
+                    pi_primos.append(x) # SE O PROXIMO VALOR FOR PRIMO
+
+            except IndexError:
+                pi_primos = "".join(pi_primos)
                 pi_primos = pi_primos.split(" ")
-                pi_primos.pop()
-                index_inicio = index_finder + 1
-            else:
-                pi_primos.append(x) # SE O PROXIMO VALOR FOR PRIMO
-                pi_primos = "".join(join_numbers)
-                pi_primos = list(pi_primos)
 
         else: # NUMEROS NÃO PRIMOS
             print ('avaliando...')
